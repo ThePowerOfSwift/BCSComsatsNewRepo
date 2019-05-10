@@ -71,6 +71,7 @@
 		B31B5AC4939F5E42D42F07F9 /* Pods_Qari_Ibrahim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F245658A2CEBF70F6D711C57 /* Pods_Qari_Ibrahim.framework */; };
 		D193A0FCE687BE7153B89868 /* Pods_Qari_IbrahimUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD7A718D36E08BB43EE00B4 /* Pods_Qari_IbrahimUITests.framework */; };
 		FC30EE6B226F48A200D1B71D /* QuranTehqeeqAudioVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC30EE6A226F48A200D1B71D /* QuranTehqeeqAudioVideo.swift */; };
+		FC930B23228572A100410430 /* BioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC930B22228572A000410430 /* BioTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +171,7 @@
 		D0703CD12C6ECBCB514834EE /* Pods_Qari_IbrahimTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qari_IbrahimTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F245658A2CEBF70F6D711C57 /* Pods_Qari_Ibrahim.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qari_Ibrahim.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC30EE6A226F48A200D1B71D /* QuranTehqeeqAudioVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuranTehqeeqAudioVideo.swift; sourceTree = "<group>"; };
+		FC930B22228572A000410430 /* BioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,7 +249,6 @@
 				7BE4F8E7225353640039382C /* AppDelegate.swift */,
 				7BE4F8EB225353640039382C /* Main.storyboard */,
 				7B1865612270776300444390 /* Slide.swift */,
-				7B186563227077AC00444390 /* Slide.xib */,
 				7BE4F91D2253A0010039382C /* TajweedViewController.swift */,
 				7BE4F91B22539A870039382C /* QiraatViewController.swift */,
 				7BE4F919225383680039382C /* QuraanViewController.swift */,
@@ -269,6 +270,7 @@
 				7B59CCBF22563ECA000E2BCF /* TasbeehViewController.swift */,
 				7B59CCC122565CAB000E2BCF /* OnlineClassesViewController.swift */,
 				7B0100E4225B397E0097AE47 /* BioViewController.swift */,
+				FC930B22228572A000410430 /* BioTableViewCell.swift */,
 				7B0100E6225B3E140097AE47 /* LiveClassViewController.swift */,
 				7B0100E8225B46D80097AE47 /* AskQuestionViewController.swift */,
 				7B0100EA225B826A0097AE47 /* RequestClassViewController.swift */,
@@ -599,6 +601,7 @@
 				7B1865682270A18F00444390 /* BioScreen.swift in Sources */,
 				7BDE17C4225C87B400BDD6DF /* SearchViewController.swift in Sources */,
 				7BE4F91622535CA00039382C /* CategoryHomeViewController.swift in Sources */,
+				FC930B23228572A100410430 /* BioTableViewCell.swift in Sources */,
 				7B59CCC222565CAB000E2BCF /* OnlineClassesViewController.swift in Sources */,
 				7B0100E9225B46D80097AE47 /* AskQuestionViewController.swift in Sources */,
 				7BE4F91822536CB00039382C /* NewViewController.swift in Sources */,

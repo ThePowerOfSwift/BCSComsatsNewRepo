@@ -10,79 +10,67 @@ import UIKit
 import Alamofire
 import SDWebImage
 
-class BioViewController: BaseViewController, UIScrollViewDelegate {
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var BioTitleLbl: UILabel!
-    var myApiArray = [BioScreen]()
-    var slides:[Slide] = []
-    var slideDataSource:[Slide] = []
+class BioViewController: BaseViewController, UITableViewDataSource,UITableViewDelegate {
+    
+    @IBOutlet weak var lblBioTitle: UILabel!
+    @IBOutlet weak var tblBioData: UITableView!
+
+    var arrAccess = [AnyObject]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        scrollView.delegate = self
-       // slides = createSlides()
-//        setupSlideScrollView(slides: slides)
         var todoEndpoint : String = ""
         //API calling
         todoEndpoint = "http://channelsmedia.net/quranapp/api/bio"
+        
         Alamofire.request(todoEndpoint)
             .responseJSON { response in
                 // check for errors
-                let arrAccess = response.result.value as! [AnyObject]
-                print("response", arrAccess)
-                self.myApiArray = BioScreen.PopulateArray(array: arrAccess as! [[String : Any]])
-                print("response===", self.myApiArray)
-                //reloading table after getting data
-
+                
+                self.arrAccess = response.result.value as! [AnyObject]
+                
+                print("response", self.arrAccess)
+                print("response",self.arrAccess[0])
+                print("response",self.arrAccess[0]["title"]!!)
+                
+                // Reload Table View
+                self.tblBioData.reloadData()
+                
                 guard response.result.error == nil else {
                     // got an error in getting the data, need to handle
                     print("error calling GET on /todos/1")
                     print(response.result.error!)
                     return
                 }
-                self.slides = self.createSlides(apiArray: self.myApiArray)
-                self.setupSlideScrollView(slides: self.slides)
+               
         }
         
-        guard let customFont = UIFont(name: "Gotham Rounded", size: UIFont.labelFontSize) else {
-            fatalError("""
-                    Failed to load the "CustomFont-Light" font.
-                    """)
-        }
-        BioTitleLbl.font = UIFontMetrics.default.scaledFont(for: customFont)
-        BioTitleLbl.adjustsFontForContentSizeCategory = true
     }
-    
-    func setupSlideScrollView(slides : [Slide]) {
-        // scrollView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        scrollView.contentSize = CGSize(width: view.frame.width * CGFloat(slides.count), height: scrollView.frame.height)
-        scrollView.isPagingEnabled = true
-        for i in 0 ..< slides.count {
-            slides[i].frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
-            scrollView.addSubview(slides[i])
-        }
-    }
-    
-    func createSlides(apiArray:[BioScreen]) -> [Slide] {
-        for i in 0 ..< apiArray.count {
-            let slide:Slide = Bundle.main.loadNibNamed("Slide", owner: self, options: nil)?.first as! Slide
-            slide.imageSlideMain.sd_setImage(with: URL(string:"http://channelsmedia.net/quranapp/public/" + self.myApiArray[i].image), placeholderImage: UIImage(named: "ic_quran"))
-            slide.txtTitle.text = self.myApiArray[i].title
-            slideDataSource.append(slide)
+        
+        
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return self.arrAccess.count
         }
         
-        return slideDataSource
-    }
-    
-    /*
-    // MARK: - Navigation
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let identifier="BioTableViewCellID"
+            let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! BioTableViewCell
+            
+            cell.lblTitle.text = (self.arrAccess[indexPath.row] as AnyObject)["title"] as? String
+            
+//            cell.imgProfile.sd_setImage(with: URL(string:"http://channelsmedia.net/quranapp/public/" + self.arrAccess[indexPath.row]), placeholderImage: UIImage(named: "ic_quran"))
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+            cell.imgProfile.sd_setImage(with: URL(string:"http://channelsmedia.net/quranapp/public/" + (self.arrAccess[indexPath.row]["image"] as! String)), placeholderImage: UIImage(named: "ic_quran"))
+            
+            return cell
+        }
+        
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+            
+        }
 
+//        lblBioTitle.font = UIFontMetrics.default.scaledFont(for: customFont)
+//        lblBioTitle.adjustsFontForContentSizeCategory = true
 }
